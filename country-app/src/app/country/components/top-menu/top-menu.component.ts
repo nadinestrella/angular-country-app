@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ByCapitalPageComponent } from '../../../shared/pages/by-capital-page/by-capital-page.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
