@@ -1,34 +1,34 @@
-<!--  -->
+<div class="m-5">
+  <section class="stats stats-vertical lg:stats-horizontal shadow mx-5 mb-5">
+    <div class="stat">
+      <div class="stat-title">Name</div>
+      <div class="stat-value">{{ country().name }}</div>
+      <div class="stat-desc">{{ country().capital }}</div>
+    </div>
 
-<section class="stats stats-vertical lg:stats-horizontal shadow mx-5 mb-5">
-  <div class="stat">
-    <div class="stat-title">Name</div>
-    <div class="stat-value">{{ country().name }}</div>
-    <div class="stat-desc">{{ country().capital }}</div>
-  </div>
+    <div class="stat">
+      <div class="stat-title">Region</div>
+      <div class="stat-value">{{ country().region }}</div>
+      <div class="stat-desc">{{ country().capital }}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Population</div>
+      <div class="stat-value">{{ country().population | number }}</div>
+      <div class="stat-desc">From {{ currentYear() }}</div>
+    </div>
+  </section>
 
-  <div class="stat">
-    <div class="stat-title">Region</div>
-    <div class="stat-value">{{ country().region }}</div>
-    <div class="stat-desc">{{ country().capital }}</div>
-  </div>
-  <div class="stat">
-    <div class="stat-title">Population</div>
-    <div class="stat-value">{{ country().population | number }}</div>
-    <div class="stat-desc">From {{ currentYear() }}</div>
-  </div>
-</section>
-
-<section class="diff aspect-16/9" tabindex="0">
-  <div class="diff-item-1" role="img" tabindex="0">
-    <img alt="country().name" [src]="country().flagSvg" />
-  </div>
-  <div class="diff-item-2" role="img">
-    <img
-      class="blur brightness-75"
-      alt="country().name"
-      [src]="country().flagSvg"
-    />
-  </div>
-  <div class="diff-resizer"></div>
-</section>
+  <section class="diff aspect-16/9" tabindex="0">
+    <div class="diff-item-1" role="img" tabindex="0">
+      <img alt="country().name" [src]="country().flagSvg" />
+    </div>
+    <div class="diff-item-2" role="img">
+      <img
+        class="blur brightness-75"
+        alt="country().name"
+        [src]="country().flagSvg"
+      />
+    </div>
+    <div class="diff-resizer"></div>
+  </section>
+</div>

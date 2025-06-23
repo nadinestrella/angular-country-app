@@ -1,9 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+
 import { SearchInputComponent } from '../../components/search-input/search-input.component';
 import { CountryListComponent } from '../../components/country-list/country-list.component';
 import { CountryService } from '../../services/country.service';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-by-capital-page',
@@ -13,9 +15,11 @@ import { of } from 'rxjs';
 export class ByCapitalPageComponent {
   //injectamos el country Service
   countryService = inject(CountryService);
-  query = signal('');
 
-  //es un recurso
+  //ruta activa
+  activatedRoute = inject(ActivatedRoute);
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
+  query = signal(this.queryParam);
 
   // RESOURCE CON OBSERVABLES
   countryResource = rxResource({
