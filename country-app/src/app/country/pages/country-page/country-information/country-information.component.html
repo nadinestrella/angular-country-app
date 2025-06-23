@@ -1,17 +1,6 @@
-<section class="mx-10">
-  <h1 class="text-3xl">{{ country().name }}</h1>
-  <h1 class="text-3xl">{{ country().population | number }}</h1>
-</section>
-
 <!--  -->
 
-<section class="stats stats-vertical lg:stats-horizontal shadow mx-5">
-  <div class="stat">
-    <div class="stat-title">Population</div>
-    <div class="stat-value">{{ country().population | number }}</div>
-    <div class="stat-desc">From {{ currentYear() }}</div>
-  </div>
-
+<section class="stats stats-vertical lg:stats-horizontal shadow mx-5 mb-5">
   <div class="stat">
     <div class="stat-title">Name</div>
     <div class="stat-value">{{ country().name }}</div>
@@ -22,6 +11,11 @@
     <div class="stat-title">Region</div>
     <div class="stat-value">{{ country().region }}</div>
     <div class="stat-desc">{{ country().capital }}</div>
+  </div>
+  <div class="stat">
+    <div class="stat-title">Population</div>
+    <div class="stat-value">{{ country().population | number }}</div>
+    <div class="stat-desc">From {{ currentYear() }}</div>
   </div>
 </section>
 
