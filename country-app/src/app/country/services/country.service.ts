@@ -4,6 +4,7 @@ import { RESTCountry } from '../interfaces/rest-countries.interface';
 import { catchError, delay, map, Observable, of, tap, throwError } from 'rxjs';
 import type { Country } from '../interfaces/country.interface';
 import { CountryMapper } from '../mappers/country.mapper';
+import { Region } from '../interfaces/region.type';
 
 const API_URL = 'https://restcountries.com/v3.1';
 
@@ -16,6 +17,7 @@ export class CountryService {
   private http = inject(HttpClient);
   private queryCacheCapital = new Map<string, Country[]>();
   private queryCacheCountry = new Map<string, Country[]>();
+  private queryCacheRegion = new Map<Region, Country[]>();
 
   //crear un metodo. peticion hhttp
 
@@ -77,6 +79,27 @@ export class CountryService {
 
         return throwError(
           () => new Error(`Could not get countries with that code ${code}`)
+        );
+      })
+    );
+  }
+
+  searchByRegion(region: Region) {
+    const url = `${API_URL}/region/${region}`;
+
+    if (this.queryCacheCountry.has(region)) {
+      return of(this.queryCacheRegion.get(region) ?? []);
+    }
+
+    return this.http.get<RESTCountry[]>(url).pipe(
+      map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
+      tap((countries) => this.queryCacheCountry.set(region, countries)),
+      delay(2000),
+      catchError((error) => {
+        console.log('Error fetching ', error);
+
+        return throwError(
+          () => new Error(`Could not get countries with that query ${region}`)
         );
       })
     );
