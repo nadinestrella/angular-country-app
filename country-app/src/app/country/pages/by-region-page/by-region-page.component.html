@@ -1,1 +1,18 @@
+<h1 class="text-2xl">Region</h1>
+<h3 class="text-lg">Select a Region</h3>
+
+<section class="row mt-2">
+  <div class="flex-col">
+    @for (region of regions; track region) {
+
+    <button class="btn mr-2 btn-primary w-[100px]">
+      {{ region }}
+    </button>
+
+    }
+  </div>
+</section>
+
+<!-- country-list -->
+
 <country-list [countries]="[]" />
