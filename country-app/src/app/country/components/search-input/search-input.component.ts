@@ -18,18 +18,18 @@ export class SearchInputComponent {
   initialValue = input<string>('');
 
   value = output<string>();
-  //linkedSignal para inicilizar una seña; con un valor
+  // linkedSignal to set up a signal with a value
   inputValue = linkedSignal<string>(() => this.initialValue() ?? '');
 
   debounceEffect = effect((onCleanup) => {
-    //cuando detecte el efecto dispara esta señal
+    // when the effect is detected launch the signal
     const value = this.inputValue();
 
     const timeout = setTimeout(() => {
       this.value.emit(value);
     }, this.debounceTime());
 
-    //cada vez q hay un cambio en el effecto, se lanza esta func
+    // every time there is change in the effect, this function is launched
 
     onCleanup(() => {
       clearTimeout(timeout);

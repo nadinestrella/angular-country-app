@@ -12,26 +12,28 @@ const API_URL = 'https://restcountries.com/v3.1';
   providedIn: 'root',
 })
 export class CountryService {
-  // peticion hhttp, primero injectar
-  //importante anadir el provider en el app config
+  // http request, first inject
+  // Important: add the provider in app config
+
   private http = inject(HttpClient);
   private queryCacheCapital = new Map<string, Country[]>();
   private queryCacheCountry = new Map<string, Country[]>();
   private queryCacheRegion = new Map<Region, Country[]>();
 
-  //crear un metodo. peticion hhttp
+  // Create a method. http request
 
   searchByCapital(query: string): Observable<Country[]> {
     query = query.toLowerCase();
 
-    //si ya existe una busqueda con ese query
+    // if already exist a search with this query
     if (this.queryCacheCapital.has(query)) {
       return of(this.queryCacheCapital.get(query) ?? []);
     }
 
     return this.http.get<RESTCountry[]>(`${API_URL}/capital/${query}`).pipe(
       map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
-      //efecto secundario, para las busquedas ya hechas
+
+      // secondary effect, to searches already done
       tap((countries) => this.queryCacheCapital.set(query, countries)),
       delay(2000),
       catchError((error) => {

@@ -13,10 +13,10 @@ import { CountryService } from '../../services/country.service';
   templateUrl: './by-capital-page.component.html',
 })
 export class ByCapitalPageComponent {
-  //injectamos el country Service
+  // Inject the country Service
   countryService = inject(CountryService);
 
-  //ruta activa
+  // Active Route
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
 

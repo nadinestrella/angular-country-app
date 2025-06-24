@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './country-list.component.html',
 })
 export class CountryListComponent {
-  //recibimos la informacion
+  //receive the info
   countries = input.required<Country[]>();
 
   errorMessage = input<string | null | unknown>();
